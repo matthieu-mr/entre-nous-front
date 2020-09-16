@@ -2,37 +2,24 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import HomeScreen from './screens/home'
-import ListScreen from './screens/list'
-
-
-
-export default function App() {
-  const Stack = createStackNavigator();
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
+
+import MainTabScreen from './screens/MainTabScreen'
+
+// import icone menu 
+import Icon from "react-native-vector-icons/Ionicons";
+
+
+
+export default function App(props) {
+ 
 
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions ={{
-          headerStyle:{
-            backgroundColor:"#0288d1"
-          },
-          headerTintColor:"white"
-        }}>
-        <Stack.Screen name="Home" component={HomeScreen}  options ={{
-           title:"Coucou",
-          headerStyle:{
-            backgroundColor:"#673ab7"
-          },
-         
-          headerTintColor:"white"
-        }} />
-        <Stack.Screen name="List" component={ListScreen} />
-      </Stack.Navigator>
-
-    </NavigationContainer>
+    <MainTabScreen/>
   );
 }
