@@ -1,19 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import 'react-native-gesture-handler';
+import React,{useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator, DrawerContentScrollView,DrawerItem } from '@react-navigation/drawer';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container, Header, Content, Button,Card, CardItem,Body} from 'native-base';
 
-export default function Home(props) {
 
-/** 
-* @tesst 
-* ! yop ojcqskn, 
+import HomeScreen from '../screens/home'
+import ListScreen from '../screens/list'
 
-*/
+// import icone menu 
+import Icon from "react-native-vector-icons/Ionicons";
+import { Entypo } from '@expo/vector-icons'; 
+
+
+export default function DrawerContent(props) {
+
 
   return (
     <View style={styles.container}>
-    <StatusBar style="auto" />
+  
       
     <Button primary>
               <Text> Primary </Text>
@@ -48,9 +57,10 @@ export default function Home(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignContent:"center",
-    backgroundColor: '#fff',
-  },
-});
+    container: {
+      flex: 1,
+      alignContent:"center",
+      backgroundColor: '#fff',
+    },
+  });
+  

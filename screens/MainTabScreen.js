@@ -10,19 +10,46 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeScreen from './home'
 import ListScreen from './list'
 
+import DrawerContent from '../drawer/DrawerContent'
+
+
 // import icone menu 
 import Icon from "react-native-vector-icons/Ionicons";
 import { Entypo } from '@expo/vector-icons'; 
 
 
 export default function MainTabScreeb(props) {
+ // create stack drawer 
   const HomeStack = createStackNavigator();
   const ListStack = createStackNavigator();
 
+ // creat stack bottom navigator  
   const Tab = createMaterialBottomTabNavigator();
   const Drawer = createDrawerNavigator();
 
+
+/** 
+*! workflow 
+
+*? 1- Top : create navigation container who contain tabs (can add drawer but each road is drawer component)
+*? 2- in drawer add tab navigator (don't forget shifting for change color tab )
+*? 3 - in drawer import componenent of drawer (here homestack ) 
+*? 4 - in in drawer import your screen component
+
+* * resume :  
+**     <navigation 
+* *      < tab >
+**           <drawer1 />
+**           <drawer2 />
+**       <tab /> 
+**     /> 
+
+*/
+
+
 const MainTab = () => {
+
+
 
     return (
         <Tab.Navigator
@@ -127,7 +154,7 @@ const ListStackScreen = ((props)=> {
   return (
     <NavigationContainer>
        
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator initialRouteName="Home" drawerContent={props=> <DrawerContent  {...props} />}>
       <Drawer.Screen name="Home" component ={MainTab}/>
     </Drawer.Navigator>
 
