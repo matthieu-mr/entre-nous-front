@@ -8,7 +8,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-import MainTabScreen from './screens/MainTabScreen'
+import MainTabScreen from './drawer/MainTabScreen'
 
 // import icone menu 
 import Icon from "react-native-vector-icons/Ionicons";

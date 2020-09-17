@@ -7,10 +7,10 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-import HomeScreen from './home'
-import ListScreen from './list'
+import HomeScreen from '../screens/home'
+import ListScreen from '../screens/list'
 
-import DrawerContent from '../drawer/DrawerContent'
+import DrawerContent from './DrawerContent'
 
 
 // import icone menu 

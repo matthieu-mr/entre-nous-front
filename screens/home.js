@@ -13,13 +13,7 @@ export default function Home(props) {
 
   return (
     <View style={styles.container}>
-    <StatusBar style="auto" />
-      
-    <Button primary>
-              <Text> Primary </Text>
-            </Button>
-    
-    
+
     <Content padder>
           <Card>
             <CardItem header bordered>
