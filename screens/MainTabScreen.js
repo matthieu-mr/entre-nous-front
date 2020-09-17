@@ -22,31 +22,38 @@ export default function MainTabScreeb(props) {
   const Tab = createMaterialBottomTabNavigator();
   const Drawer = createDrawerNavigator();
 
-const MainTab = (props) => {
+const MainTab = () => {
 
     return (
         <Tab.Navigator
         initialRouteName="Home"
-        activeColor="white"
-        style={{ backgroundColor: 'white' }}
+        activeColor="#f0edf6"
+        inactiveColor="#3e2465"
+        shifting={true}
+        barStyle={{ backgroundColor: '#3949ab' }}
       >
         <Tab.Screen
-          name="List"
+          name="Home"
           component={HomeStackScreen}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Accueil',
+            tabBarColor:'#3949ab',
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
           }}
+          
+
+
         />
         <Tab.Screen
           name="Notifications"
           component={ListStackScreen}
           options={{
-            tabBarLabel: 'Updates',
+            tabBarLabel: 'Liste',
+            tabBarColor:"#5c6bc0",
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="bell" color={color} size={26} />
+              <Entypo name="list" color={color} size={26} />
             ),
           }}
         />
@@ -57,24 +64,25 @@ const MainTab = (props) => {
 
 
 
-const HomeStackScreen = ({navigation})=> {
+const HomeStackScreen = (props)=> {
   return (
   <HomeStack.Navigator screenOptions ={{
     headerStyle:{
-      backgroundColor:"#0288d1"
+      backgroundColor:"#3949ab"
     },
     headerTintColor:"white"
   }}>
     <HomeStack.Screen name="Home" component={HomeScreen}  options ={{
         title:"Coucou",
         headerStyle:{
-          backgroundColor:"#673ab7"
+          backgroundColor:'#3949ab'
         },
         headerLeft:()=>(
           <Icon.Button name="ios-menu" 
+          backgroundColor="#3949ab"
             size={25}
             onPress={()=>{
-              navigation.openDrawer()
+              props.navigation.openDrawer()
             }}></Icon.Button>
         ),
         headerTintColor:"white"
@@ -87,31 +95,26 @@ const HomeStackScreen = ({navigation})=> {
 
 
 
-const ListStackScreen = (({navigation})=> {
+const ListStackScreen = ((props)=> {
   return (
   <ListStack.Navigator screenOptions ={{
     headerStyle:{
-      backgroundColor:"#0288d1"
+      backgroundColor:"#5c6bc0"
     },
     headerTintColor:"white"
   }}>
 
       <ListStack.Screen name="List" component={ListScreen} options={{
          headerLeft:()=>(
-          <Icon.Button name="ios-menu" 
+          <Icon.Button name="ios-menu"
+            backgroundColor="#5c6bc0"
+            size={25} 
             onPress={()=>{
-              navigation.openDrawer()
+              props.navigation.openDrawer()
             }}></Icon.Button>
         ),
       }} />
-      <HomeStack.Screen name="Home" component={HomeScreen}  options ={{
-        title:"Coucou",
-        headerStyle:{
-          backgroundColor:"#673ab7"
-        },
-      
-        headerTintColor:"white"
-      }} />
+     
   </ListStack.Navigator>
 )})
 
