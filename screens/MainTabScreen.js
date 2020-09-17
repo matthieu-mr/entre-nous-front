@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React,{useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -7,13 +7,12 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-
 import HomeScreen from './home'
 import ListScreen from './list'
 
 // import icone menu 
 import Icon from "react-native-vector-icons/Ionicons";
-
+import { Entypo } from '@expo/vector-icons'; 
 
 
 export default function MainTabScreeb(props) {
@@ -23,16 +22,17 @@ export default function MainTabScreeb(props) {
   const Tab = createMaterialBottomTabNavigator();
   const Drawer = createDrawerNavigator();
 
-const MainTab = () => {
+const MainTab = (props) => {
+
     return (
         <Tab.Navigator
         initialRouteName="Home"
-        activeColor="#e91e63"
-        style={{ backgroundColor: 'tomato' }}
+        activeColor="white"
+        style={{ backgroundColor: 'white' }}
       >
         <Tab.Screen
           name="List"
-          component={HomeScreen}
+          component={HomeStackScreen}
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({ color }) => (
@@ -42,7 +42,7 @@ const MainTab = () => {
         />
         <Tab.Screen
           name="Notifications"
-          component={ListScreen}
+          component={ListStackScreen}
           options={{
             tabBarLabel: 'Updates',
             tabBarIcon: ({ color }) => (
@@ -57,7 +57,7 @@ const MainTab = () => {
 
 
 
-const HomeStackScreen = ((props)=> {
+const HomeStackScreen = ({navigation})=> {
   return (
   <HomeStack.Navigator screenOptions ={{
     headerStyle:{
@@ -74,7 +74,7 @@ const HomeStackScreen = ((props)=> {
           <Icon.Button name="ios-menu" 
             size={25}
             onPress={()=>{
-              props.navigation.openDrawer()
+              navigation.openDrawer()
             }}></Icon.Button>
         ),
         headerTintColor:"white"
@@ -84,10 +84,10 @@ const HomeStackScreen = ((props)=> {
   </HomeStack.Navigator>
     )
   }
-)
 
 
-const ListStackScreen = ((props)=> {
+
+const ListStackScreen = (({navigation})=> {
   return (
   <ListStack.Navigator screenOptions ={{
     headerStyle:{
@@ -100,7 +100,7 @@ const ListStackScreen = ((props)=> {
          headerLeft:()=>(
           <Icon.Button name="ios-menu" 
             onPress={()=>{
-              props.navigation.openDrawer()
+              navigation.openDrawer()
             }}></Icon.Button>
         ),
       }} />
@@ -115,37 +115,18 @@ const ListStackScreen = ((props)=> {
   </ListStack.Navigator>
 )})
 
+/* 
 
+
+
+*/
 
   return (
     <NavigationContainer>
        
-        <Tab.Navigator
-        initialRouteName="Home"
-        activeColor="#e91e63"
-        style={{ backgroundColor: 'tomato' }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeStackScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="List"
-          component={ListStackScreen}
-          options={{
-            tabBarLabel: 'Updates',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="list" color={color} size={26} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component ={MainTab}/>
+    </Drawer.Navigator>
 
     </NavigationContainer>
   );
