@@ -1,34 +1,19 @@
-import 'react-native-gesture-handler';
-import React,{useState} from 'react';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator, DrawerContentScrollView,DrawerItem } from '@react-navigation/drawer';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container, Header, Content, Button,Card, CardItem,Body} from 'native-base';
 
+export default function ContactList(props) {
 
-import HomeScreen from '../screens/Home'
-import ListScreen from '../screens/ListTypePlace'
+/** 
+* @tesst 
+* ! yop ojcqskn, 
 
-// import icone menu 
-import Icon from "react-native-vector-icons/Ionicons";
-import { Entypo } from '@expo/vector-icons'; 
-
-
-export default function DrawerContent(props) {
-
+*/
 
   return (
     <View style={styles.container}>
-  
-      
-    <Button primary>
-              <Text> Primary </Text>
-            </Button>
-    
-    
+
     <Content padder>
           <Card>
             <CardItem header bordered>
@@ -57,10 +42,9 @@ export default function DrawerContent(props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignContent:"center",
-      backgroundColor: '#fff',
-    },
-  });
-  
+  container: {
+    flex: 1,
+    alignContent:"center",
+    backgroundColor: '#fff',
+  },
+});

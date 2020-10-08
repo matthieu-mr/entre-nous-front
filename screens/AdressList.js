@@ -8,55 +8,63 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
+import { FontAwesome5 } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons'; 
 import { ScrollView } from 'react-native-gesture-handler';
 
-import * as Analytics from 'expo-firebase-analytics';
-
-import * as WebBrowser from 'expo-web-browser';
-import * as Facebook from 'expo-auth-session/providers/facebook';
-
-WebBrowser.maybeCompleteAuthSession();
-
-
-function Home(props) {
-/*
-uri facebook
-https://entre-nous-5d8d8.firebaseapp.com/__/auth/handler
-
-google 
-id client 
-805275159192-4b4shij9k6spaqpsk0v0magf70vl1eka.apps.googleusercontent.com
-
-clke secrete
-c9cKdQsqmXmpQl_hoCYQ3YYk
-
-*/
-
-
+function AdressList(props) {
 
   let gradient = ["#80d6ff","#42a5f5","#0077c2","#42a5f5","#80d6ff"]
- 
-  let test=async()=>[
-    await Analytics.setCurrentScreen('GiveGithubStarsScreen','test')
-  ]
-  test()
+  const [nbAdress,setNbAdress] = useState(15)
 
 
-let bouton =async()=>{
-  await Analytics.logEvent('ButtonTapped', {
-    name: 'settings',
-    screen: 'profile',
-    purpose: 'Opens the internal settings',
-  });
-}
+let AffichageAdress
 
-  /* 
-fb 
-id : 353411062676075
+AffichageAdress =props.listAdress.map((item,i)=>{
+  let id = item.id
+  return (
+  <View style={{marginTop:15,borderRadius:500,width:"80%"}}>
+    <LinearGradient
+    colors={gradient}
+    start={{x: 0.0, y: 1.0}} end={{x: 2.0, y: 2.0}}
+    >    
+          <Card style={{display:"flex",flexDirection:"column"}}>
+            <CardItem bordered style={{display:"flex",flexDirection:"column",alignContent:"flex-start",alignItems:"space-between"}}>
+              <View style={styles.contentCard}> 
+                <Text style={{fontSize:26,color:"#546e7a"}}>
+                   {item.name}
+                </Text>
+                <TouchableOpacity onPress={() => alert("save")}>
+                  <FontAwesome name="star" size={28} color="#0077c2" />
+                </TouchableOpacity>
+              </View>
+            </CardItem>
+            <CardItem >
+              <View style={styles.contentCard}> 
+                  <View> 
+                    <Text style={styles.contentTextCard}>
+                      {item.adress}
+                    </Text>
+                    <Text style={styles.contentTextCard}>
+                      {item.postcode} - {item.city}
+                    </Text>
+                  </View>
+                <TouchableOpacity onPress={() => props.deleteAdress({id})}>
 
-key : c50c94bc4605a981c1dfc10703f1a175
+                <FontAwesome name="remove" size={24} color="red" />
+              </TouchableOpacity>
+              </View>
+            </CardItem>
+          </Card>
 
-  */
+    </LinearGradient>
+
+  </View>
+
+  )
+})
+
+
 
   return (
   <View style={styles.container}>
@@ -64,7 +72,7 @@ key : c50c94bc4605a981c1dfc10703f1a175
 
     <View style={styles.constainerList}> 
       
-         
+          {AffichageAdress}
 
         <LinearGradient
         colors={gradient}
@@ -72,9 +80,9 @@ key : c50c94bc4605a981c1dfc10703f1a175
           style={{ height: 48, width: 200, alignItems: 'center', justifyContent: 'center', borderRadius:50,marginTop:20}}
         >
 
-          <TouchableOpacity style={styles.buttonContainer} onPress={()=>bouton('findadress')}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={()=>props.navigation.navigate('findadress')}>
             <Text style={styles.buttonText}>
-             Face
+              Ajouter une adresse
             </Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -91,7 +99,7 @@ key : c50c94bc4605a981c1dfc10703f1a175
           >
             <TouchableOpacity style={styles.buttonContainer} onPress={()=>alert('findadress')}>
               <Text style={styles.buttonText}>
-                Google
+                Valider
               </Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -174,5 +182,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps, 
   mapDispatchToProps
-)(Home);
+)(AdressList);
 

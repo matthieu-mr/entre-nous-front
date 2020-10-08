@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "menu",
-    "slug": "menu",
+    "name": "entre nous",
+    "slug": "entre-nous",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "facebookScheme": "fb353411062676075",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,8 +20,26 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.matthieumichon.entrenous",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 1
+    },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "config":{
+        "firebase": {
+          "apiKey": "AIzaSyCSvw_UHC_S8lPG4TNC97oNRlUznaDZ4mA",
+          "authDomain": "entre-nous-5d8d8.firebaseapp.com",
+          "databaseURL": "https://entre-nous-5d8d8.firebaseio.com",
+          "projectId": "entre-nous-5d8d8",
+          "storageBucket": "entre-nous-5d8d8.appspot.com",
+          "messagingSenderId": "805275159192",
+          "appId": "1:805275159192:web:e27b209a4685296b32deed",
+          "measurementId": "G-832DG1NTZW"
+        }
+      }
     }
+
   }
 }
